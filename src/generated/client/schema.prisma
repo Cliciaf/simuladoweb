@@ -1,0 +1,43 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./src/generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Paciente {
+  id      Int      @id @default(autoincrement())
+  nomePaciente String
+  senha   Int
+  usuario String
+  consultas Consulta[]
+}
+
+model Secretaria {
+  id      Int      @id @default(autoincrement())
+  nome    String
+  RG      Int
+  agendas Agenda[]
+}
+
+model Consulta {
+  id           Int      @id @default(autoincrement())
+  data         DateTime
+  nomePaciente String
+  nomeDentista String
+  paciente     Paciente @relation(fields: [pacienteId], references: [id])
+  pacienteId   Int
+}
+
+model Agenda {
+  id           Int      @id @default(autoincrement())
+  data         DateTime
+  nomePaciente String
+  secretaria   Secretaria @relation(fields: [secretariaId], references: [id])
+  secretariaId Int
+}
