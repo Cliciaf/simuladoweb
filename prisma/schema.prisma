@@ -11,11 +11,11 @@ datasource db {
 }
 
 model Paciente {
-  id        Int      @id @default(autoincrement()) // Utilizado para fazer com que o Id autoicremente
+  id        Int      @id @default(autoincrement()) 
   nomePcnte String
-  senha     Int      @unique                       // A senha é chave unica
+  senha     Int      @unique                       
   usuario   String
-  consulta Consulta?                              // Pode ser nulo
+  consulta Consulta?                              
 }
 
 model Consulta{
@@ -33,8 +33,7 @@ model Secretaria{
   id            Int     @id @default(autoincrement())
   nome          String  
   RG            Int
-  cosulta       Consulta[]                              // Lista de cosias dentro de um atributo
-}
+  cosulta       Consulta[]                              
 
 model Agenda{
   id           Int      @id @default(autoincrement())
