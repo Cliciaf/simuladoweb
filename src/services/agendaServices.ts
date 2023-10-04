@@ -10,21 +10,21 @@ class agendaServices{
 
     constructor(){}
 
-    async criarAgenda(dado: any){                           // C do CRUD
+    async criarAgenda(dado: any){                           
         try{
             const agenda = await prisma.agenda.create({
-                data: {                                     // o prisma reconhece data como padrão tentei mudar e deu merda
+                data: {                                     
                     data: dado.data,
                     nomePcnt: dado.nomePcnt
                 }
             });
             return agenda;
         } catch(error){
-            throw new Error("Error ao criar uma nova Agenda")   // Esse comando faz sinaliza que algo inesperado aconteceu e que o fluxo normal do programa deve ser interrompido.
+            throw new Error("Error ao criar uma nova Agenda")   
         }
     }
 
-    async listarAgendas(){                                      // R do CRUD
+    async listarAgendas(){                                      
         try{
             const agenda = await prisma.agenda.findMany();
             return agenda;
@@ -33,7 +33,7 @@ class agendaServices{
             } 
     }
 
-    async updateAgenda(id: number, dado: any){                                       // U do CRUD
+    async updateAgenda(id: number, dado: any){                                       
         try{
             const agenda = await prisma.agenda.update({
                 where: { id : id},
@@ -45,7 +45,7 @@ class agendaServices{
         }
     }
 
-    async deletarAgenda(id : number){                                      // D do CRUD
+    async deletarAgenda(id : number){                                      
         try{
             const agenda = await prisma.agenda.delete({
                 where: {id : id}
